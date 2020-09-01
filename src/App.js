@@ -1,8 +1,22 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const App = props => {
   const [state, setState] = useState(props)  // 状態全てをstate一つで持つ
   const { name, price } = state  // 分割代入
+
+  useEffect(() => {
+    console.log('This is like componentDidMount or componentDidUpdate.')
+  })
+
+  // DOMの最初のレンダリングのときのみ実行される
+  useEffect(() => {
+    console.log('This is like componentDidMount.')
+  }, [])
+
+  // 最初とnameが変更されたときのみ実行される
+  useEffect(() => {
+    console.log('This callback is for name only.')
+  }, [name])
 
   return (
     <>
